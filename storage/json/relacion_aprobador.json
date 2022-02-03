@@ -1,0 +1,42 @@
+[
+    {
+        "id_grAp": 1,
+        "legajo_user": "0001"
+    },
+    {
+        "id_grAp": 2,
+        "legajo_user": "0002"
+    },
+    {
+        "id_grAp": 7,
+        "legajo_user": "0001"
+    },
+    {
+        "id_grAp": 7,
+        "legajo_user": "0002"
+    },
+    {
+        "id_grAp": 1,
+        "legajo_user": "0003"
+    },
+    {
+        "id_grAp": 3,
+        "legajo_user": "0004"
+    },
+    {
+        "id_grAp": 4,
+        "legajo_user": "0005"
+    },
+    {
+        "id_grAp": 6,
+        "legajo_user": "0005"
+    },
+    {
+        "id_grAp": 5,
+        "legajo_user": "0006"
+    },
+    {
+        "id_grAp": 4,
+        "legajo_user": "0007"
+    }
+]

@@ -1,0 +1,37 @@
+[
+    {
+        "id": 1,
+        "id_etiqueta": 1,
+        "name": "desa_GDP"
+    },
+    {
+        "id": 2,
+        "id_etiqueta": 1,
+        "name": "desa_Externa"
+    },
+    {
+        "id": 3,
+        "id_etiqueta": 4,
+        "name": "Gdp"
+    },
+    {
+        "id": 4,
+        "id_etiqueta": 2,
+        "name": "Centro de Contactos"
+    },
+    {
+        "id": 5,
+        "id_etiqueta": 2,
+        "name": "RRHH"
+    },
+    {
+        "id": 6,
+        "id_etiqueta": 3,
+        "name": "Director"
+    },
+    {
+        "id": 7,
+        "id_etiqueta": 2,
+        "name": "desa_superior"
+    }
+]

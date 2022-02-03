@@ -1,0 +1,240 @@
+[
+ {
+     "id": 1,
+     "name": "Enfermedad",
+     "tipo": "No Planificada",
+     "certificado": true,
+     "pasos" : [
+            {
+                "1" : {
+                    "aprobadores_etiqueta": 1,
+                    "fijo_etiqueta": false,
+                    "aprueba":false,
+                    "todos":false
+                    },
+                "2" : {
+                    "aprobadores_etiqueta": 2,
+                    "fijo_etiqueta": false,
+                    "aprueba":false,
+                    "todos":false
+                    },
+                "3" : {
+                    "aprobadores_etiqueta": 3,
+                    "fijo_etiqueta": false,
+                    "aprueba":false,
+                    "todos":false
+                    },
+                "4" : {
+                    "aprobadores_etiqueta": 4,
+                    "fijo_etiqueta": true,
+                    "aprueba":false,
+                    "todos":false
+                    }
+            }
+     ]
+ },
+ {
+     "id": 2,
+     "name": "Fallecimiento Familiar",
+     "tipo":"No Planificada",
+     "certificado": true,
+     "pasos" : [
+            {
+                "1" : {
+                    "aprobadores_etiqueta": 1,
+                    "fijo_etiqueta": false,
+                    "aprueba":false,
+                    "todos":false
+                    },
+                "2" : {
+                    "aprobadores_etiqueta": 2,
+                    "fijo_etiqueta": false,
+                    "aprueba":false,
+                    "todos":false
+                    },
+                "3" : {
+                    "aprobadores_etiqueta": 3,
+                    "fijo_etiqueta": false,
+                    "aprueba":false,
+                    "todos":false
+                    },
+                "4" : {
+                    "aprobadores_etiqueta": 4,
+                    "fijo_etiqueta": true,
+                    "aprueba":false,
+                    "todos":false
+                    }
+            }
+     ]
+ },
+ {
+     "id": 3,
+     "name": "Casamiento de hijo",
+     "tipo":"Planificada",
+     "certificado": true,
+     "pasos" : [
+            {
+                "1" : {
+                    "aprobadores_etiqueta": 1,
+                    "fijo_etiqueta": false,
+                    "aprueba":false,
+                    "todos":false
+                    },
+                "2" : {
+                    "aprobadores_etiqueta": 2,
+                    "fijo_etiqueta": false,
+                    "aprueba":false,
+                    "todos":false
+                    },
+                "3" : {
+                    "aprobadores_etiqueta": 3,
+                    "fijo_etiqueta": false,
+                    "aprueba":false,
+                    "todos":false
+                    },
+                "4" : {
+                    "aprobadores_etiqueta": 4,
+                    "fijo_etiqueta": true,
+                    "aprueba":false,
+                    "todos":false
+                    }
+            }
+     ]
+ },
+ {
+     "id": 4,
+     "name": "Días de Estudio y Examen",
+     "tipo":"Planificada",
+     "certificado": true,
+     "pasos" : [
+            {
+                "1" : {
+                    "aprobadores_etiqueta": 1,
+                    "fijo_etiqueta": false,
+                    "aprueba":false,
+                    "todos":false
+                    },
+                "2" : {
+                    "aprobadores_etiqueta": 2,
+                    "fijo_etiqueta": false,
+                    "aprueba":false,
+                    "todos":false
+                    },
+                "3" : {
+                    "aprobadores_etiqueta": 3,
+                    "fijo_etiqueta": false,
+                    "aprueba":false,
+                    "todos":false
+                    },
+                "4" : {
+                    "aprobadores_etiqueta": 4,
+                    "fijo_etiqueta": true,
+                    "aprueba":false,
+                    "todos":false
+                    }
+            }
+     ]
+ },
+ {
+     "id": 5,
+     "name": "Trámite Personal",
+     "tipo":"Planificada",
+     "certificado": false,
+     "pasos" : [
+            {
+                "1" : {
+                    "aprobadores_etiqueta": 1,
+                    "fijo_etiqueta": false,
+                    "aprueba":true,
+                    "todos":false
+                    },
+                "2" : {
+                    "aprobadores_etiqueta": 2,
+                    "fijo_etiqueta": false,
+                    "aprueba":true,
+                    "todos":false
+                    },
+                "3" : {
+                    "aprobadores_etiqueta": 3,
+                    "fijo_etiqueta": false,
+                    "aprueba":false,
+                    "todos":false
+                    },
+                "4" : {
+                    "aprobadores_etiqueta": 4,
+                    "fijo_etiqueta": true,
+                    "aprueba":true,
+                    "todos":false
+                    }
+            }
+     ]
+ },
+ {
+     "id": 6,
+     "name": "Día Empleado Comercio",
+     "tipo":"Planificada",
+     "certificado": false,
+     "pasos" : [
+            {
+                "1" : {
+                    "aprobadores_etiqueta": 1,
+                    "fijo_etiqueta": false,
+                    "aprueba":false,
+                    "todos":false
+                    },
+                "2" : {
+                    "aprobadores_etiqueta": 2,
+                    "fijo_etiqueta": false,
+                    "aprueba":true,
+                    "todos":false
+                    },
+                "3" : {
+                    "aprobadores_etiqueta": 3,
+                    "fijo_etiqueta": false,
+                    "aprueba":true,
+                    "todos":false
+                    },
+                "4" : {
+                    "aprobadores_etiqueta": 4,
+                    "fijo_etiqueta": true,
+                    "aprueba":true,
+                    "todos":false
+                    }
+            }
+     ]
+ },
+ {
+     "id": 7,
+     "name": "Vacaciones",
+     "tipo":"Planificada",
+     "certificado": false,
+     "pasos" : [
+            {
+                "1" : {
+                    "aprobadores_etiqueta": 1,
+                    "fijo_etiqueta": false,
+                    "aprueba":false,
+                    "todos":false
+                    },
+                "2" : {
+                    "aprobadores_etiqueta": 2,
+                    "fijo_etiqueta": false,
+                    "aprueba":true,
+                    "todos":false
+                    },
+                "3" : {
+                    "aprobadores_etiqueta": 3,
+                    "fijo_etiqueta": false,
+                    "aprueba":true,
+                    "todos":false
+                    },
+                "4" : {
+                    "aprobadores_etiqueta": 4,
+                    "fijo_etiqueta": true,
+                    "aprueba":true,
+                    "todos":false
+                    }
+            }
+     ]
+ }
+]

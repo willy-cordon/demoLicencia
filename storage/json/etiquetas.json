@@ -1,0 +1,24 @@
+[
+
+    {
+        "id": 1,
+        "nombre": "Jefe",
+        "fijo" : "false"
+    },
+    {
+        "id": 2,
+        "nombre": "Superior",
+        "fijo" : "false"
+    },
+    {
+        "id": 3,
+        "nombre": "Director",
+        "fijo" : "false"
+    },
+    {
+        "id": 4,
+        "nombre": "RRHH",
+        "fijo" : "true"
+    }
+
+]

@@ -1,0 +1,50 @@
+[
+    {
+        "id": "1",
+        "legajo": "1000",
+        "nombre": "Juan Superior CallCenter",
+        "email": "juan@yopmail.com"
+    },
+    {
+        "id": "2",
+        "legajo": "1001",
+        "nombre": "german",
+        "email": "german@yopmail.com"
+    },
+    {
+        "id": "3",
+        "legajo": "1002",
+        "nombre": "gaston",
+        "email": "gaston@yopmail.com"
+    },
+    {
+        "id": "4",
+        "legajo": "1003",
+        "nombre": "Gabriela",
+        "email": "gabi@yopmail.com"
+    },
+    {
+        "id": "5",
+        "legajo": "1004",
+        "nombre": "Juan Manuel",
+        "email": "juanma@yopmail.com"
+    },
+    {
+        "id": "6",
+        "legajo": "1005",
+        "nombre": "Federico",
+        "email": "fede@yopmail.com"
+    },
+    {
+        "id": "7",
+        "legajo": "1006",
+        "nombre": "Claudia",
+        "email": "claudia@yopmail.com"
+    },
+    {
+        "id": "8",
+        "legajo": "1007",
+        "nombre": "Laura Peredo",
+        "email": "laura@yopmail.com"
+    }
+]

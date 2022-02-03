@@ -1,0 +1,30 @@
+[
+    {
+        "nro_legajo": "0001",
+        "nombre": "Juan"
+    },
+    {
+        "nro_legajo": "0002",
+        "nombre": "Willy"
+    },
+    {
+        "nro_legajo": "0003",
+        "nombre": "Oswald"
+    },
+    {
+        "nro_legajo": "0004",
+        "nombre": "Ani"
+    },
+    {
+        "nro_legajo": "0005",
+        "nombre": "Estefi"
+    },
+    {
+        "nro_legajo": "0006",
+        "nombre": "German"
+    },
+    {
+        "nro_legajo": "0007",
+        "nombre": "Chico CallCenter"
+    }
+]

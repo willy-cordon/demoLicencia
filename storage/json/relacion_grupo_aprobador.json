@@ -1,0 +1,35 @@
+[
+    {
+        "id_grAp": 7,
+        "legajo_aprobador": "1002"
+    },
+    {
+        "id_grAp": 6,
+        "legajo_aprobador": "1001"
+    },
+    {
+        "id_grAp": 1,
+        "legajo_aprobador": "1003"
+    },
+    {
+        "id_grAp": 1,
+        "legajo_aprobador": "1004"
+    },
+    {
+        "id_grAp": 2,
+        "legajo_aprobador": "1005"
+    },
+    {
+        "id_grAp": 2,
+        "legajo_aprobador": "1006"
+    },
+    {
+        "id_grAp": 3,
+        "legajo_aprobador": "1007"
+    }
+    ,
+    {
+        "id_grAp": 4,
+        "legajo_aprobador": "1000"
+    }
+]

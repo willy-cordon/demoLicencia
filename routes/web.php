@@ -16,3 +16,11 @@
 $router->get('/', function () use ($router) {
     return $router->app->version();
 });
+$router->post('/api/buscarPasos','workflowController@buscarPasosLegajo');
+
+$router->get('/api/relacionGrupoAprobador','workflowController@relacionGrupoAprobador');
+// $router->post('/api/aprobadores','EtiquetaController@aprobadores');
+// $router->post('/api/buscarLicencia','workflowController@buscarTiposLicencia');
+// $router->post('/api/buscarLicenciaPorPasos','workflowController@buscarLicenciaPorPasos');
+
+
