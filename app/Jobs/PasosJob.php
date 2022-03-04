@@ -12,9 +12,11 @@ class PasosJob extends Job
      * @return void
      */
     private $idTipoLicencia;
-    public function __construct($idTipoLicencia)
+    private $aprobadorService;
+    public function __construct($idTipoLicencia, AprobadorService $aprobadorService)
     {
         $this->idTipoLicencia = $idTipoLicencia;
+        $this->aprobadorService = $aprobadorService;
     }
 
     /**

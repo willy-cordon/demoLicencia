@@ -281,7 +281,8 @@ class WorkflowService
     public function processWorkflowLicencia($request)
     {
         try{
-            dispatch()
+            $id_licencia = $request['id_licencia'];
+            dispatch(new PasosJob($id_licencia));
             $workFlow = $this->processJson('workflowLicencia');
             $workFlowStep = $this->processJson('workFlowStep');
 
@@ -294,7 +295,6 @@ class WorkflowService
                     break;
                 case 'pendiente':
 
-                    $id_licencia = $request['id_licencia'];
                     $arr = "";
                     $arrAct = [];
                     $arrPaso = [];
