@@ -2,11 +2,9 @@
 
 namespace App\Http\Controllers;
 
-
 use App\Services\WorkflowService;
 use Illuminate\Http\Request;
 use App\Traits\ProcessJsonDbTrait;
-use Illuminate\Support\Facades\Log;
 
 class workflowController extends Controller
 {
@@ -56,8 +54,6 @@ class workflowController extends Controller
                 return $exception;
             }
         }
-
-
 
 
 

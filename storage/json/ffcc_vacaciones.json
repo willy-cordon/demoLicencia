@@ -1,0 +1,30 @@
+{
+    "ffcc_name": "FFCC_vacaciones_PNET",
+    "ffcc_version": 1,
+    "description": "Formulario licencia Vacaciones v1",
+    "createdDate": "2022-02-23 14:00:00",
+    "updatedDate": "2022-02-23 14:00:00",
+    "id": 5,
+    "creatorUser": "ECUICCI",
+    "modifierUser": null,
+    "components": [
+        {
+            "name": "Fecha inicio de la licencia",
+            "placeholder": "Fecha inicio de la licencia",
+            "class" : "date",
+            "column": "fi_licencia",
+            "type": "date",
+            "value": "Text Area",
+            "required": true
+        },
+        {
+            "name": "Fecha reinicio de actividades",
+            "placeholder": "Fecha reinicio de actividades",
+            "class" : "date",
+            "column": "ff_licencia",
+            "type": "date",
+            "value": "Text Area",
+            "required": true
+        }
+    ]
+}

@@ -1,0 +1,675 @@
+{
+"ffcc_name": "FFCC_preexistencias_PNET",
+"ffcc_version": 1,
+"description": "Formulario Declaración preexistencias Salud-PNET v1",
+"createdDate": "2021-03-04 14:00:00",
+"updatedDate": "2021-05-13 14:00:00",
+"id": 2,
+"creatorUser": "LVARGAS",
+"modifierUser": "LVARGAS",
+"components": [
+{
+"componentType": "select",
+"label": "El/la estudiante tiene cobertura de…",
+"id": 1,
+"nameKey": "cobertura_medica_tipo",
+"required": true,
+"hidden": false,
+"order": 1,
+"valueType": "integer",
+"defaultValue": null,
+"conditionalKey": null,
+"conditionalValue": null,
+"validation": null,
+"options": [
+{
+"value": 1,
+"text": "Obra Social"
+},
+{
+"value": 2,
+"text": "Empresa de medicina prepaga"
+},
+{
+"value": 3,
+"text": "Cobertura exclusiva del sector público"
+}
+]
+},
+{
+"componentType": "radio",
+"label": "Pertenece a grupo de riesgo",
+"id": 2,
+"nameKey": "es_grupo_riesgo",
+"required": true,
+"hidden": false,
+"order": 2,
+"valueType": "boolean",
+"defaultValue": false,
+"conditionalKey": null,
+"conditionalValue": null,
+"validation": null,
+"options": [
+{
+"value": true,
+"text": "SI"
+},
+{
+"value": false,
+"text": "NO"
+}
+]
+},
+{
+"componentType": "separador",
+"label": "Indique a que grupo de riesgo pertenece",
+"id": 3,
+"nameKey": null,
+"required": false,
+"hidden": false,
+"order": 3,
+"valueType": null,
+"defaultValue": null,
+"conditionalKey": "es_grupo_riesgo",
+"conditionalValue": true,
+"validation": null,
+"options": null
+},
+{
+"componentType": "checkbox",
+"label": "Enfermedades cardiológicas crónicas",
+"id": 4,
+"nameKey": "riego_cardiologigo",
+"required": true,
+"hidden": false,
+"order": 4,
+"valueType": "boolean",
+"defaultValue": false,
+"conditionalKey": "es_grupo_riesgo",
+"conditionalValue": true,
+"validation": null,
+"options": [
+{
+"value": true,
+"text": "SI"
+},
+{
+"value": false,
+"text": "NO"
+}
+]
+},
+{
+"componentType": "separador",
+"label": "Detalle de riesgo cardiológico",
+"id": 5,
+"nameKey": null,
+"required": false,
+"hidden": false,
+"order": 5,
+"valueType": null,
+"defaultValue": null,
+"conditionalKey": "es_grupo_riesgo",
+"conditionalValue": true,
+"validation": null,
+"options": [
+{
+"value": "a",
+"text": "cardiopatías congénitas"
+},
+{
+"value": "b",
+"text": "cardiopatías adquiridas (reumáticas, miocarditis, Kawasaki. etc.)"
+},
+{
+"value": "c",
+"text": "insuficiencia cardiaca"
+},
+{
+"value": "d",
+"text": "hipertensión pulmonar"
+},
+{
+"value": "e",
+"text": "arritmias cardiacas"
+},
+{
+"value": "f",
+"text": "otras"
+}
+]
+},
+{
+"componentType": "checkbox",
+"label": "Enfermedades pulmonares crónicas",
+"id": 6,
+"nameKey": "riesgo_pulmonar",
+"required": true,
+"hidden": false,
+"order": 6,
+"valueType": "boolean",
+"defaultValue": false,
+"conditionalKey": "es_grupo_riesgo",
+"conditionalValue": true,
+"validation": null,
+"options": [
+{
+"value": true,
+"text": "SI"
+},
+{
+"value": false,
+"text": "NO"
+}
+]
+},
+{
+"componentType": "separador",
+"label": "Detalle de riesgo pulmonar",
+"id": 7,
+"nameKey": null,
+"required": false,
+"hidden": false,
+"order": 7,
+"valueType": null,
+"defaultValue": null,
+"conditionalKey": "es_grupo_riesgo",
+"conditionalValue": true,
+"validation": null,
+"options": [
+{
+"value": "a",
+"text": "asma"
+},
+{
+"value": "b",
+"text": "fibrosis quística"
+},
+{
+"value": "c",
+"text": "Displasia broncopulmonar"
+},
+{
+"value": "d",
+"text": "Tuberculosis"
+},
+{
+"value": "e",
+"text": "Otras enfermedades pulmonares crónicas (traqueotomía, requerimiento de oxígeno, bronquiectasias, etc.)"
+}
+]
+},
+{
+"componentType": "checkbox",
+"label": "Enfermedades renales crónicas",
+"id": 8,
+"nameKey": "riesgo_renal",
+"required": true,
+"hidden": false,
+"order": 8,
+"valueType": "boolean",
+"defaultValue": false,
+"conditionalKey": "es_grupo_riesgo",
+"conditionalValue": true,
+"validation": null,
+"options": [
+{
+"value": true,
+"text": "SI"
+},
+{
+"value": false,
+"text": "NO"
+}
+]
+},
+{
+"componentType": "separador",
+"label": "Detalle de riesgo renal",
+"id": 9,
+"nameKey": null,
+"required": false,
+"hidden": false,
+"order": 9,
+"valueType": null,
+"defaultValue": null,
+"conditionalKey": "es_grupo_riesgo",
+"conditionalValue": true,
+"validation": null,
+"options": [
+{
+"value": "a",
+"text": "insuficiencia renal crónica"
+},
+{
+"value": "b",
+"text": "glomerulopatías"
+},
+{
+"value": "c",
+"text": "vasculitis"
+},
+{
+"value": "d",
+"text": "síndrome nefrótico"
+},
+{
+"value": "e",
+"text": "síndrome nefrítico"
+},
+{
+"value": "f",
+"text": "otras"
+}
+]
+},
+{
+"componentType": "checkbox",
+"label": "Enfermedades hepáticas crónicas",
+"id": 10,
+"nameKey": "riesgo_hepatico",
+"required": true,
+"hidden": false,
+"order": 10,
+"valueType": "boolean",
+"defaultValue": false,
+"conditionalKey": "es_grupo_riesgo",
+"conditionalValue": true,
+"validation": null,
+"options": [
+{
+"value": true,
+"text": "SI"
+},
+{
+"value": false,
+"text": "NO"
+}
+]
+},
+{
+"componentType": "separador",
+"label": "Detalle de riesgo hepático",
+"id": 11,
+"nameKey": null,
+"required": false,
+"hidden": false,
+"order": 11,
+"valueType": null,
+"defaultValue": null,
+"conditionalKey": "es_grupo_riesgo",
+"conditionalValue": true,
+"validation": null,
+"options": [
+{
+"value": "a",
+"text": "Cirrosis Hepática"
+},
+{
+"value": "b",
+"text": "Insuficiencia hepática"
+},
+{
+"value": "c",
+"text": "otras"
+}
+]
+},
+{
+"componentType": "checkbox",
+"label": "Enfermedades reumatológicas crónicas",
+"id": 12,
+"nameKey": "riesgo_reumatico",
+"required": true,
+"hidden": false,
+"order": 12,
+"valueType": "boolean",
+"defaultValue": false,
+"conditionalKey": "es_grupo_riesgo",
+"conditionalValue": true,
+"validation": null,
+"options": [
+{
+"value": true,
+"text": "SI"
+},
+{
+"value": false,
+"text": "NO"
+}
+]
+},
+{
+"componentType": "separador",
+"label": "Detalle de riesgo reumatico",
+"id": 13,
+"nameKey": null,
+"required": false,
+"hidden": false,
+"order": 13,
+"valueType": null,
+"defaultValue": null,
+"conditionalKey": "es_grupo_riesgo",
+"conditionalValue": true,
+"validation": null,
+"options": [
+{
+"value": "a",
+"text": "Lupus eritematoso sistémico"
+},
+{
+"value": "b",
+"text": "Artritis idiopática juvenil"
+},
+{
+"value": "c",
+"text": "Dermatomiositis juvenil"
+},
+{
+"value": "d",
+"text": "Esclerosis sistémica"
+},
+{
+"value": "e",
+"text": "otras (vasculitis, síndrome de activación macrofágica, etc.)"
+}
+]
+},
+{
+"componentType": "checkbox",
+"label": "Enfermedades neuromusculares (como Distrofia muscular, Miastenia gravis, etc.)",
+"id": 14,
+"nameKey": "riesgo_neuromuscular",
+"required": true,
+"hidden": false,
+"order": 14,
+"valueType": "boolean",
+"defaultValue": false,
+"conditionalKey": "es_grupo_riesgo",
+"conditionalValue": true,
+"validation": null,
+"options": [
+{
+"value": true,
+"text": "SI"
+},
+{
+"value": false,
+"text": "NO"
+}
+]
+},
+{
+"componentType": "checkbox",
+"label": "Paciente inmunodeprimido",
+"id": 15,
+"nameKey": "riesgo_inmunodeprimido",
+"required": true,
+"hidden": false,
+"order": 15,
+"valueType": "boolean",
+"defaultValue": false,
+"conditionalKey": "es_grupo_riesgo",
+"conditionalValue": true,
+"validation": null,
+"options": [
+{
+"value": true,
+"text": "SI"
+},
+{
+"value": false,
+"text": "NO"
+}
+]
+},
+{
+"componentType": "separador",
+"label": "Detalle de riesgo inmunodeprimidos",
+"id": 16,
+"nameKey": null,
+"required": false,
+"hidden": false,
+"order": 16,
+"valueType": null,
+"defaultValue": null,
+"conditionalKey": "es_grupo_riesgo",
+"conditionalValue": true,
+"validation": null,
+"options": [
+{
+"value": "a",
+"text": "Tratamiento con medicación inmunosupresora (corticoides, inmunomoduladores, quimioterápicos)"
+},
+{
+"value": "b",
+"text": "Trasplantados"
+},
+{
+"value": "c",
+"text": "inmunodeficiencias primarias"
+},
+{
+"value": "d",
+"text": "HIV"
+}
+]
+},
+{
+"componentType": "checkbox",
+"label": "Diabetes",
+"id": 17,
+"nameKey": "riesgo_diabetes",
+"required": true,
+"hidden": false,
+"order": 17,
+"valueType": "boolean",
+"defaultValue": false,
+"conditionalKey": "es_grupo_riesgo",
+"conditionalValue": true,
+"validation": null,
+"options": [
+{
+"value": true,
+"text": "SI"
+},
+{
+"value": false,
+"text": "NO"
+}
+]
+},
+{
+"componentType": "checkbox",
+"label": "Obesidad severa o mórbida (IMC igual o mayor a 35)",
+"id": 18,
+"nameKey": "riesgo_obesidad",
+"required": true,
+"hidden": false,
+"order": 18,
+"valueType": "boolean",
+"defaultValue": false,
+"conditionalKey": "es_grupo_riesgo",
+"conditionalValue": true,
+"validation": null,
+"options": [
+{
+"value": true,
+"text": "SI"
+},
+{
+"value": false,
+"text": "NO"
+}
+]
+},
+{
+"componentType": "checkbox",
+"label": "Desnutrición",
+"id": 19,
+"nameKey": "riesgo_desnutricion",
+"required": true,
+"hidden": false,
+"order": 19,
+"valueType": "boolean",
+"defaultValue": false,
+"conditionalKey": "es_grupo_riesgo",
+"conditionalValue": true,
+"validation": null,
+"options": [
+{
+"value": true,
+"text": "SI"
+},
+{
+"value": false,
+"text": "NO"
+}
+]
+},
+{
+"componentType": "checkbox",
+"label": "Encefalopatía moderada o grave",
+"id": 20,
+"nameKey": "riesgo_encefalopatia",
+"required": true,
+"hidden": false,
+"order": 20,
+"valueType": "boolean",
+"defaultValue": false,
+"conditionalKey": "es_grupo_riesgo",
+"conditionalValue": true,
+"validation": null,
+"options": [
+{
+"value": true,
+"text": "SI"
+},
+{
+"value": false,
+"text": "NO"
+}
+]
+},
+{
+"componentType": "checkbox",
+"label": "Embarazo",
+"id": 21,
+"nameKey": "riesgo_embarazo",
+"required": true,
+"hidden": false,
+"order": 21,
+"valueType": "boolean",
+"defaultValue": false,
+"conditionalKey": "es_grupo_riesgo",
+"conditionalValue": true,
+"validation": null,
+"options": [
+{
+"value": true,
+"text": "SI"
+},
+{
+"value": false,
+"text": "NO"
+}
+]
+},
+{
+"componentType": "checkbox",
+"label": "Drepanocitosis",
+"id": 22,
+"nameKey": "riesgo_drepanocitosis",
+"required": true,
+"hidden": false,
+"order": 22,
+"valueType": "boolean",
+"defaultValue": false,
+"conditionalKey": "es_grupo_riesgo",
+"conditionalValue": true,
+"validation": null,
+"options": [
+{
+"value": true,
+"text": "SI"
+},
+{
+"value": false,
+"text": "NO"
+}
+]
+},
+{
+"componentType": "radio",
+"label": "Convive con una persona que pertenece a un grupo de riesgo por razones de salud (no edad).",
+"id": 23,
+"nameKey": "convive_persona_riesgo",
+"required": true,
+"hidden": false,
+"order": 23,
+"valueType": "boolean",
+"defaultValue": false,
+"conditionalKey": null,
+"conditionalValue": null,
+"validation": null,
+"options": [
+{
+"value": true,
+"text": "SI"
+},
+{
+"value": false,
+"text": "NO"
+}
+]
+},
+{
+"componentType": "radio",
+"label": "Asistirá a la escuela",
+"id": 24,
+"nameKey": "asiste_escuela",
+"required": true,
+"hidden": false,
+"order": 24,
+"valueType": "boolean",
+"defaultValue": false,
+"conditionalKey": null,
+"conditionalValue": null,
+"validation": null,
+"options": [
+{
+"value": true,
+"text": "SI"
+},
+{
+"value": false,
+"text": "NO"
+}
+]
+},
+{
+"componentType": "radio",
+"label": "La/el estudiante asiste solo/a o asiste acompañado/a de un/a adulto/a responsable.",
+"id": 25,
+"nameKey": "asiste_solo",
+"required": true,
+"hidden": false,
+"order": 25,
+"valueType": "boolean",
+"defaultValue": false,
+"conditionalKey": "asiste_escuela",
+"conditionalValue": true,
+"validation": null,
+"options": [
+{
+"value": true,
+"text": "Acompañado/a de adulto/a responsable"
+},
+{
+"value": false,
+"text": "Solo/a"
+}
+]
+}
+]
+}

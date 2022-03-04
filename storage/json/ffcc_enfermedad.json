@@ -1,0 +1,32 @@
+{
+    "ffcc_name": "FFCC_enfermedad_PNET",
+    "ffcc_version": 1,
+    "description": "Formulario solicitud de licencia Enfermedad v1",
+    "createdDate": "2022-02-23 14:00:00",
+    "updatedDate": "2022-02-23 14:00:00",
+    "id": 3,
+    "creatorUser": "ECUICCI",
+    "modifierUser": null,
+    "components": [
+        {
+                "name" : "Name",
+                "placeholder": "Please Write Your Name...",
+                "class": "form-control",
+                "column": "name",
+                "type": "text",
+                "value": "test",
+                "required": true
+        },
+        {
+            
+                "name" : "Text Area",
+                "placeholder" : "Please Write Your Name...",
+                "class" : "date",
+                "column" :"datePicker",
+                "type" : "date",
+                "value" :"Text Area",
+                "required" : true
+              
+        }
+    ]
+}

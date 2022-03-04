@@ -1,0 +1,18 @@
+[
+    {
+        "id_tipo_licencia": 1,
+        "nombreArchivo": "ffcc_enfermedad"
+    },
+    {
+        "id_tipo_licencia": 2,
+        "nombreArchivo": "ffcc_fallecimientoFamiliar"
+    },
+    {
+        "id_tipo_licencia": 3,
+        "nombreArchivo": "ffcc_casamientoHijo"
+    },
+    {
+        "id_tipo_licencia": 7,
+        "nombreArchivo": "ffcc_vacaciones"
+    }
+]

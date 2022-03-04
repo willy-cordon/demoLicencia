@@ -1,0 +1,43 @@
+{
+    "ffcc_name": "FFCC_casamientoHijo_PNET",
+    "ffcc_version": 1,
+    "description": "Formulario licencia Casamiento Hijo v1",
+    "createdDate": "2022-02-23 14:00:00",
+    "updatedDate": "2022-02-23 14:00:00",
+    "id": 2,
+    "creatorUser": "ECUICCI",
+    "modifierUser": null,
+    "components": [
+        {
+        "componentType": "inputDate",
+        "label": "Fecha inicio de la licencia",
+        "id": 27,
+        "nameKey": "fi_licencia",
+        "required": true,
+        "hidden": false,
+        "order": 27,
+        "valueType": "date",
+        "defaultValue": null,
+        "conditionalKey": null,
+        "conditionalValue": true,
+        "validation": null,
+        "options": []
+        },
+        {
+        "componentType": "inputDate",
+        "label": "Fecha reinicio de actividades",
+        "id": 27,
+        "nameKey": "ff_licencia",
+        "required": true,
+        "hidden": false,
+        "order": 27,
+        "valueType": "date",
+        "defaultValue": null,
+        "conditionalKey": null,
+        "conditionalValue": true,
+        "validation": null,
+        "options": []
+        }
+       
+    ]
+}

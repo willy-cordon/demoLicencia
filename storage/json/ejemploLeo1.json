@@ -1,0 +1,567 @@
+{
+    "ffcc_name": "FFCC_autodiagnostico_PNET",
+    "ffcc_version": 1,
+    "description": "Formulario autodiagnostico Salud-PNET v1",
+    "createdDate": "2021-03-04 14:00:00",
+    "updatedDate": "2021-03-04 14:00:00",
+    "id": 1,
+    "creatorUser": "LVARGAS",
+    "modifierUser": null,
+    "components": [
+        {
+        "componentType": "checkbox",
+        "label": "Tiene COVID (confirmado por testeo o criterio epidemiológico)",
+        "id": 26,
+        "nameKey": "tiene_covid",
+        "required": true,
+        "hidden": false,
+        "order": 26,
+        "valueType": "boolean",
+        "defaultValue": false,
+        "conditionalKey": null,
+        "conditionalValue": null,
+        "validation": null,
+        "options": [
+            {
+            "value": true,
+            "text": "SI"
+            },
+            {
+            "value": false,
+            "text": "NO"
+            }
+        ]
+        },
+        {
+        "componentType": "inputText",
+        "label": "Fecha inicio de sintomas",
+        "id": 27,
+        "nameKey": "fi_tiene_covid",
+        "required": true,
+        "hidden": false,
+        "order": 27,
+        "valueType": "string",
+        "defaultValue": null,
+        "conditionalKey": "tiene_covid",
+        "conditionalValue": true,
+        "validation": null,
+        "options": []
+        },
+        {
+        "componentType": "checkbox",
+        "label": "Temperatura de 37.5° o mas",
+        "id": 28,
+        "nameKey": "tiene_temperatura",
+        "required": true,
+        "hidden": false,
+        "order": 28,
+        "valueType": "boolean",
+        "defaultValue": false,
+        "conditionalKey": "tiene_covid",
+        "conditionalValue": false,
+        "validation": null,
+        "options": [
+                {
+                "value": true,
+                "text": "SI"
+                },
+                {
+                "value": false,
+                "text": "NO"
+                }
+             ]
+        },
+        {
+        "componentType": "inputText",
+        "label": "Fecha inicio temperatura",
+        "id": 29,
+        "nameKey": "fi_tiene_temperatura",
+        "required": true,
+        "hidden": false,
+        "order": 29,
+        "valueType": "string",
+        "defaultValue": null,
+        "conditionalKey": "tiene_temperatura",
+        "conditionalValue": true,
+        "validation": null,
+        "options": []
+        },
+        {
+        "componentType": "checkbox",
+        "label": "Tos",
+        "id": 30,
+        "nameKey": "tiene_tos",
+        "required": true,
+        "hidden": false,
+        "order": 30,
+        "valueType": "boolean",
+        "defaultValue": false,
+        "conditionalKey": "tiene_covid",
+        "conditionalValue": false,
+        "validation": null,
+        "options": [
+        {
+        "value": true,
+        "text": "SI"
+        },
+        {
+        "value": false,
+        "text": "NO"
+        }
+        ]
+        },
+        {
+        "componentType": "inputText",
+        "label": "Fecha inicio de tos",
+        "id": 31,
+        "nameKey": "fi_tiene_tos",
+        "required": true,
+        "hidden": false,
+        "order": 31,
+        "valueType": "string",
+        "defaultValue": null,
+        "conditionalKey": "tiene_tos",
+        "conditionalValue": true,
+        "validation": null,
+        "options": []
+        },
+        {
+        "componentType": "checkbox",
+        "label": "Dolor de garganta",
+        "id": 32,
+        "nameKey": "tiene_dolor_garganta",
+        "required": true,
+        "hidden": false,
+        "order": 32,
+        "valueType": "boolean",
+        "defaultValue": false,
+        "conditionalKey": "tiene_covid",
+        "conditionalValue": false,
+        "validation": null,
+        "options": [
+            {
+            "value": true,
+            "text": "SI"
+            },
+            {
+            "value": false,
+            "text": "NO"
+            }
+        ]
+        },
+        {
+        "componentType": "inputText",
+        "label": "Fecha inicio dolor de garganta",
+        "id": 33,
+        "nameKey": "fi_tiene_dolor_garganta",
+        "required": true,
+        "hidden": false,
+        "order": 33,
+        "valueType": "string",
+        "defaultValue": null,
+        "conditionalKey": "tiene_dolor_garganta",
+        "conditionalValue": true,
+        "validation": null,
+        "options": []
+        },
+        {
+        "componentType": "checkbox",
+        "label": "Dificultad respiratoria",
+        "id": 34,
+        "nameKey": "tiene_dificultad_respiratoria",
+        "required": true,
+        "hidden": false,
+        "order": 34,
+        "valueType": "boolean",
+        "defaultValue": false,
+        "conditionalKey": "tiene_covid",
+        "conditionalValue": false,
+        "validation": null,
+        "options": [
+            {
+            "value": true,
+            "text": "SI"
+            },
+            {
+            "value": false,
+            "text": "NO"
+            }
+        ]
+        },
+        {
+        "componentType": "inputText",
+        "label": "Fecha inicio dificultad respiratoria",
+        "id": 35,
+        "nameKey": "fi_tiene_dificultad_respiratoria",
+        "required": true,
+        "hidden": false,
+        "order": 35,
+        "valueType": "string",
+        "defaultValue": null,
+        "conditionalKey": "tiene_dificultad_respiratoria",
+        "conditionalValue": true,
+        "validation": null,
+        "options": []
+        },
+        {
+        "componentType": "checkbox",
+        "label": "Dolor de cabeza",
+        "id": 36,
+        "nameKey": "tiene_dolor_cabeza",
+        "required": true,
+        "hidden": false,
+        "order": 36,
+        "valueType": "boolean",
+        "defaultValue": false,
+        "conditionalKey": "tiene_covid",
+        "conditionalValue": false,
+        "validation": null,
+        "options": [
+        {
+        "value": true,
+        "text": "SI"
+        },
+        {
+        "value": false,
+        "text": "NO"
+        }
+        ]
+        },
+        {
+        "componentType": "inputText",
+        "label": "Fecha inicio dolor de cabeza",
+        "id": 37,
+        "nameKey": "fi_tiene_dolor_cabeza",
+        "required": true,
+        "hidden": false,
+        "order": 37,
+        "valueType": "string",
+        "defaultValue": null,
+        "conditionalKey": "tiene_dolor_cabeza",
+        "conditionalValue": true,
+        "validation": null,
+        "options": []
+        },
+        {
+        "componentType": "checkbox",
+        "label": "Dolor muscular",
+        "id": 38,
+        "nameKey": "tiene_dolor_muscular",
+        "required": true,
+        "hidden": false,
+        "order": 38,
+        "valueType": "boolean",
+        "defaultValue": false,
+        "conditionalKey": "tiene_covid",
+        "conditionalValue": false,
+        "validation": null,
+        "options": [
+        {
+        "value": true,
+        "text": "SI"
+        },
+        {
+        "value": false,
+        "text": "NO"
+        }
+        ]
+        },
+        {
+        "componentType": "inputText",
+        "label": "Fecha inicio dolor muscular",
+        "id": 39,
+        "nameKey": "fi_tiene_dolor_muscular",
+        "required": true,
+        "hidden": false,
+        "order": 39,
+        "valueType": "string",
+        "defaultValue": null,
+        "conditionalKey": "tiene_dolor_muscular",
+        "conditionalValue": true,
+        "validation": null,
+        "options": []
+        },
+        {
+        "componentType": "checkbox",
+        "label": "Diarrea/vómitos",
+        "id": 40,
+        "nameKey": "tiene_diarrea_vomitos",
+        "required": true,
+        "hidden": false,
+        "order": 40,
+        "valueType": "boolean",
+        "defaultValue": false,
+        "conditionalKey": "tiene_covid",
+        "conditionalValue": false,
+        "validation": null,
+        "options": [
+            {
+            "value": true,
+            "text": "SI"
+            },
+            {
+            "value": false,
+            "text": "NO"
+            }
+        ]
+        },
+        {
+        "componentType": "inputText",
+        "label": "Fecha inicio Diarrea/vómitos",
+        "id": 41,
+        "nameKey": "fi_tiene_diarrea_vomitos",
+        "required": true,
+        "hidden": false,
+        "order": 41,
+        "valueType": "string",
+        "defaultValue": null,
+        "conditionalKey": "tiene_diarrea_vomitos",
+        "conditionalValue": true,
+        "validation": null,
+        "options": []
+        },
+        {
+        "componentType": "checkbox",
+        "label": "Pérdida del olfato",
+        "id": 42,
+        "nameKey": "tiene_perdida_olfato",
+        "required": true,
+        "hidden": false,
+        "order": 42,
+        "valueType": "boolean",
+        "defaultValue": false,
+        "conditionalKey": "tiene_covid",
+        "conditionalValue": false,
+        "validation": null,
+        "options": [
+            {
+            "value": true,
+            "text": "SI"
+            },
+            {
+            "value": false,
+            "text": "NO"
+            }
+        ]
+        },
+        {
+        "componentType": "inputText",
+        "label": "Fecha inicio perdida del olfato",
+        "id": 43,
+        "nameKey": "fi_tiene_perdida_olfato",
+        "required": true,
+        "hidden": false,
+        "order": 43,
+        "valueType": "string",
+        "defaultValue": null,
+        "conditionalKey": "tiene_perdida_olfato",
+        "conditionalValue": true,
+        "validation": null,
+        "options": []
+        },
+        {
+        "componentType": "checkbox",
+        "label": "Pérdida del gusto",
+        "id": 44,
+        "nameKey": "tiene_perdida_gusto",
+        "required": true,
+        "hidden": false,
+        "order": 44,
+        "valueType": "boolean",
+        "defaultValue": false,
+        "conditionalKey": "tiene_covid",
+        "conditionalValue": false,
+        "validation": null,
+        "options": [
+        {
+        "value": true,
+        "text": "SI"
+        },
+        {
+        "value": false,
+        "text": "NO"
+        }
+        ]
+        },
+        {
+        "componentType": "inputText",
+        "label": "Fecha inicio Pérdida del gusto",
+        "id": 45,
+        "nameKey": "fi_tiene_perdida_gusto",
+        "required": true,
+        "hidden": false,
+        "order": 45,
+        "valueType": "string",
+        "defaultValue": null,
+        "conditionalKey": "tiene_perdida_gusto",
+        "conditionalValue": true,
+        "validation": null,
+        "options": []
+        },
+        {
+        "componentType": "checkbox",
+        "label": "Es contacto estrecho de alguna persona sospechosa (Resultado de hisopado de nasofaríngeo pendiente) o confirmada de COVID-19",
+        "id": 46,
+        "nameKey": "es_contacto_estrecho",
+        "required": true,
+        "hidden": false,
+        "order": 46,
+        "valueType": "boolean",
+        "defaultValue": false,
+        "conditionalKey": "tiene_covid",
+        "conditionalValue": false,
+        "validation": null,
+        "options": [
+            {
+            "value": true,
+            "text": "SI"
+            },
+            {
+            "value": false,
+            "text": "NO"
+            }
+        ]
+        },
+        {
+        "componentType": "select",
+        "label": "confirmado / sospechoso",
+        "id": 47,
+        "nameKey": "contacto_sospechoso_confirmado",
+        "required": true,
+        "hidden": false,
+        "order": 47,
+        "valueType": "integer",
+        "defaultValue": null,
+        "conditionalKey": "es_contacto_estrecho",
+        "conditionalValue": true,
+        "validation": null,
+        "options": [
+            {
+            "value": 1,
+            "text": "confirmado"
+            },
+            {
+            "value": 2,
+            "text": "sospechoso"
+            }
+        ]
+        },
+        {
+        "componentType": "inputText",
+        "label": "Fecha de último contacto",
+        "id": 48,
+        "nameKey": "fuc_contacto_sospechoso_confirmado",
+        "required": true,
+        "hidden": false,
+        "order": 48,
+        "valueType": "string",
+        "defaultValue": null,
+        "conditionalKey": "contacto_sospechoso_confirmado",
+        "conditionalValue": 2,
+        "validation": null,
+        "options": []
+        },
+        {
+        "componentType": "checkbox",
+        "label": "Es conviviente",
+        "id": 49,
+        "nameKey": "es_conviviente",
+        "required": true,
+        "hidden": false,
+        "order": 49,
+        "valueType": "boolean",
+        "defaultValue": false,
+        "conditionalKey": "contacto_sospechoso_confirmado",
+        "conditionalValue": 1,
+        "validation": null,
+        "options": [
+            {
+            "value": true,
+            "text": "SI"
+            },
+            {
+            "value": false,
+            "text": "NO"
+            }
+        ]
+        },
+        {
+        "componentType": "inputText",
+        "label": "Fecha de último contacto confirmado NO conviviente",
+        "id": 50,
+        "nameKey": "fuc_contacto_confirmado_no_conviviente",
+        "required": true,
+        "hidden": false,
+        "order": 50,
+        "valueType": "string",
+        "defaultValue": null,
+        "conditionalKey": "es_conviviente",
+        "conditionalValue": false,
+        "validation": null,
+        "options": []
+        },
+        {
+        "componentType": "inputText",
+        "label": "Fecha de inicio de síntomas conviviente",
+        "id": 50,
+        "nameKey": "fis_contacto_confirmado_conviviente",
+        "required": true,
+        "hidden": false,
+        "order": 50,
+        "valueType": "string",
+        "defaultValue": null,
+        "conditionalKey": "es_conviviente",
+        "conditionalValue": true,
+        "validation": null,
+        "options": []
+        },
+        {
+        "componentType": "checkbox",
+        "label": "Asistó al establecimiento 48 hs antes del inicio de síntomas",
+        "id": 51,
+        "nameKey": "ultimas_48_covid",
+        "required": true,
+        "hidden": false,
+        "order": 51,
+        "valueType": "boolean",
+        "defaultValue": false,
+        "conditionalKey": "tiene_covid",
+        "conditionalValue": true,
+        "validation": null,
+        "options": [
+            {
+            "value": true,
+            "text": "SI"
+            },
+            {
+            "value": false,
+            "text": "NO"
+            }
+        ]
+        },
+        {
+        "componentType": "checkbox",
+        "label": "Asistó al establecimiento 48 hs antes del inicio de síntomas",
+        "id": 52,
+        "nameKey": "ultimas_48_sintomas",
+        "required": true,
+        "hidden": false,
+        "order": 52,
+        "valueType": "boolean",
+        "defaultValue": false,
+        "conditionalKey": null,
+        "conditionalValue": null,
+        "validation": null,
+        "options": [
+            {
+            "value": true,
+            "text": "SI"
+            },
+            {
+            "value": false,
+            "text": "NO"
+            }
+        ]
+        }
+    ]
+}

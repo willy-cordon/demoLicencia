@@ -3,48 +3,56 @@
         "id": "1",
         "legajo": "1000",
         "nombre": "Juan Superior CallCenter",
-        "email": "juan@yopmail.com"
+        "email": "juan@yopmail.com",
+        "activo":true
     },
     {
         "id": "2",
         "legajo": "1001",
         "nombre": "german",
-        "email": "german@yopmail.com"
+        "email": "german@yopmail.com",
+        "activo":true
     },
     {
         "id": "3",
         "legajo": "1002",
         "nombre": "gaston",
-        "email": "gaston@yopmail.com"
+        "email": "gaston@yopmail.com",
+        "activo":true
     },
     {
         "id": "4",
         "legajo": "1003",
         "nombre": "Gabriela",
-        "email": "gabi@yopmail.com"
+        "email": "gabi@yopmail.com",
+        "activo":true
     },
     {
         "id": "5",
         "legajo": "1004",
         "nombre": "Juan Manuel",
-        "email": "juanma@yopmail.com"
+        "email": "juanma@yopmail.com",
+        "activo":true
     },
     {
         "id": "6",
         "legajo": "1005",
         "nombre": "Federico",
-        "email": "fede@yopmail.com"
+        "email": "fede@yopmail.com",
+        "activo":true
     },
     {
         "id": "7",
         "legajo": "1006",
         "nombre": "Claudia",
-        "email": "claudia@yopmail.com"
+        "email": "claudia@yopmail.com",
+        "activo":true
     },
     {
         "id": "8",
         "legajo": "1007",
         "nombre": "Laura Peredo",
-        "email": "laura@yopmail.com"
+        "email": "laura@yopmail.com",
+        "activo":true
     }
 ]

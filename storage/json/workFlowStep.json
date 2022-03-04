@@ -1,0 +1,1 @@
+[{"id":"62211a095a3f4","paso":1,"id_workflow":"62211a095a3ef","estados":"aprobado","accion":"notifica","id_grupo_aprobador":1},{"id":"62211a095a46a","paso":2,"id_workflow":"62211a095a3ef","estados":"aprobado","accion":"aprueba","id_grupo_aprobador":7},{"id":"62211a095ab36","paso":3,"id_workflow":"62211a095a3ef","estados":"aprobado","accion":"aprueba","id_grupo_aprobador":3}]

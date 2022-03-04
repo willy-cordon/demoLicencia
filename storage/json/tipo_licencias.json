@@ -4,6 +4,7 @@
      "name": "Enfermedad",
      "tipo": "No Planificada",
      "certificado": true,
+     "diasAprob": null,
      "pasos" : [
             {
                 "1" : {

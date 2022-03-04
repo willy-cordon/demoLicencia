@@ -1,30 +1,44 @@
 [
     {
         "nro_legajo": "0001",
-        "nombre": "Juan"
+        "nombre": "Juan",
+        "email": "juan@yopmail.com",
+        "activo": false
     },
     {
         "nro_legajo": "0002",
-        "nombre": "Willy"
+        "nombre": "Willy",
+        "email": "willy@yopmail.com",
+        "activo": true
     },
     {
         "nro_legajo": "0003",
-        "nombre": "Oswald"
+        "nombre": "Oswald",
+        "email": "oswald@yopmail.com",
+        "activo": true
     },
     {
         "nro_legajo": "0004",
-        "nombre": "Ani"
+        "nombre": "Ani",
+        "email": "ani@yopmail.com",
+        "activo": true
     },
     {
         "nro_legajo": "0005",
-        "nombre": "Estefi"
+        "nombre": "Estefi",
+        "email": "estefi@yopmail.com",
+        "activo": true
     },
     {
         "nro_legajo": "0006",
-        "nombre": "German"
+        "nombre": "German",
+        "email": "german@yopmail.com",
+        "activo": true
     },
     {
         "nro_legajo": "0007",
-        "nombre": "Chico CallCenter"
+        "nombre": "Chico CallCenter",
+        "email": "chicocall@yopmail.com",
+        "activo": true
     }
 ]
