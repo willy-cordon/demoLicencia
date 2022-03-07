@@ -282,7 +282,7 @@ class WorkflowService
     {
         try{
             $id_licencia = $request['id_licencia'];
-            dispatch(new PasosJob($id_licencia));
+
             $workFlow = $this->processJson('workflowLicencia');
             $workFlowStep = $this->processJson('workFlowStep');
 
@@ -340,6 +340,8 @@ class WorkflowService
                                 $processCurrentAction = $this->stepLicenseService->getDataAprobadores($processCurrent['id_grupo_aprobador']);
                                 $notification = $this->actionsService->sendNotification($processCurrentAction);
 //                                $this->processWorkflowLicencia($request);
+                            }else{
+                                dispatch(new PasosJob($id_licencia));
                             }
 
                         }

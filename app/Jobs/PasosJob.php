@@ -3,6 +3,7 @@
 namespace App\Jobs;
 
 use App\Services\AprobadorService;
+use Illuminate\Support\Facades\Log;
 
 class PasosJob extends Job
 {
@@ -11,12 +12,12 @@ class PasosJob extends Job
      *
      * @return void
      */
-    private $idTipoLicencia;
+    private $idLicencia;
     private $aprobadorService;
-    public function __construct($idTipoLicencia, AprobadorService $aprobadorService)
+    public function __construct($idLicencia)
     {
-        $this->idTipoLicencia = $idTipoLicencia;
-        $this->aprobadorService = $aprobadorService;
+        $this->idLicencia = $idLicencia;
+        $this->aprobadorService =new AprobadorService();
     }
 
     /**
@@ -26,6 +27,7 @@ class PasosJob extends Job
      */
     public function handle()
     {
-        //
+        $data = $this->aprobadorService->buscarGrupoAprobador($this->idLicencia);
+        Log::debug($data);
     }
 }

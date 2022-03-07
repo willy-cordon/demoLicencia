@@ -4,6 +4,7 @@ namespace App\Services;
 use App\Traits\ProcessJsonDbTrait;
 use App\Traits\SaveJsonDbTrait;
 use App\Services\StepLicenseService;
+use Illuminate\Support\Facades\Log;
 
 /**
  * Class AprobadorService
@@ -15,10 +16,6 @@ class AprobadorService
 
     private $stepLicenseService;
 
-    public function __construct(StepLicenseService $stepLicenseService)
-    {
-        $this->stepLicenseService = $stepLicenseService;
-    }
 
     public function buscarGrupoAprobador($idLicencia)
     {
@@ -38,20 +35,24 @@ class AprobadorService
             }
         }
 
-        $aprobadores = $this->stepLicenseService($idGrupoAprobador);
+        $stp = new StepLicenseService(new ActionsService());
+        $aprobadores = $stp->getDataAprobadores($idGrupoAprobador);
 
         $aprobadoresActivos = [];
         foreach ($aprobadores as $aprobador)
         {
-            if ($aprobador['activo']){
+            Log::debug($aprobador);
+            if ($aprobador['activo'] || $aprobador['activo'] == 'true'){
                 $aprobadoresActivos[] = $aprobador;
             }
         }
 
         if (count($aprobadoresActivos) != 0)
         {
-            $this->cerrarPaso($idPaso);
+            return 'tiene aprobadores';
         }else{
+            $this->cerrarPaso($idPaso);
+            return 'no tiene aprobadores';
             //Notifica
         }
 
@@ -121,22 +122,27 @@ class AprobadorService
     }
     public function cerrarPaso($idPaso)
     {
+        Log::debug('cerrando el paso');
         try {
             $workFlowPasos = $this->processJson('workFlowStep');
             $arr2 = [];
-            foreach ($workFlowPasos as $key=>$datos ) {
+            $arr1 = [];
+            foreach ($workFlowPasos as $datos ) {
                 if($datos['id'] == $idPaso){
-                    $arr2['id']= $datos['id'] ;
-                    $arr2['estados']= $datos['estados'] ;
-                    $arr2['accion']= $datos['accion'] ;
-                    $arr2['id_grupo_aprobador']= $datos['id_grupo_aprobador'] ;
-                    $arr2['paso'] = $datos['paso'];
-                    $arr2['situacion'] = true;
-                    $arr2['mensaje'] = 'paso cerrado x motivo';
+                    $arr1['id']= $datos['id'] ;
+                    $arr1['estados']= 'aprobado' ;
+                    $arr1['accion']= $datos['accion'] ;
+                    $arr1['id_grupo_aprobador']= $datos['id_grupo_aprobador'] ;
+                    $arr1['paso'] = $datos['paso'];
+                    $arr1['situacion'] = true;
+                    $arr1['mensaje'] = 'paso cerrado x motivo';
+                    $arr2[] = $arr1;
+                }else{
+                    $arr2[] = $datos;
                 }
             }
 
-            $this->saveFileJson('workflowLicencia',json_encode($arr2));
+            $this->saveFileJson('workFlowStep',json_encode($arr2));
         }catch(\Throwable $exception){
             return $exception;
         }
