@@ -118,6 +118,7 @@ class WorkflowService
             $licenseArray['paso_actual'] = $this->stepLicenseService->processStep($licenseArray,$arr['pasos']);
             $licArr[]=$licenseArray;
             $saveJson = $this->saveFileJson('workflowLicencia',json_encode($licArr));
+            $arr['idLicencia'] = $g;
             return  $arr;
 
 
@@ -311,6 +312,7 @@ class WorkflowService
                      * @return * informacion del paso actual
                      */
                     $processCurrent = $this->processWorkflowAccion($arr);
+                    Log::debug($processCurrent);
                     $aprueba = $processCurrent['accion'];
                     $aprueba != 'notifica' ?  dispatch(new PasosJob($id_licencia)) : '';
                     $arrLic=[];

@@ -124,9 +124,13 @@ class AprobadorService
         Log::debug('cerrando el paso');
         try {
             $workFlowPasos = $this->processJson('workFlowStep');
+            $workFlowLic = $this->processJson('workflowLicencia');
             $arr2 = [];
             $arr1 = [];
+            $idWorkflow = '';
+            $arrLic = [];
             foreach ($workFlowPasos as $datos ) {
+                $idWorkflow = $datos['id_workflow'];
                 if($datos['id'] == $idPaso){
                     $arr1['id']= $datos['id'] ;
                     $arr1['estados']= 'aprobado' ;
@@ -140,6 +144,15 @@ class AprobadorService
                     $arr2[] = $datos;
                 }
             }
+            foreach($workFlowLic as $lic){
+                $countUpdate = $lic['count'] - 1;
+                if ($countUpdate == 0){
+                    $lic['estado'] = 'aprobado';
+                }
+                $lic['count'] = $countUpdate;
+                $arrLic[] = $lic;
+            }
+            $this->saveFileJson('workflowLicencia',json_encode($arrLic));
 
             $this->saveFileJson('workFlowStep',json_encode($arr2));
         }catch(\Throwable $exception){

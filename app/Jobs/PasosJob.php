@@ -28,6 +28,6 @@ class PasosJob extends Job
     public function handle()
     {
         $data = $this->aprobadorService->buscarGrupoAprobador($this->idLicencia);
-        Log::debug($data);
+
     }
 }
