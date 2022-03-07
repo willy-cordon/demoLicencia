@@ -26,15 +26,14 @@ class AprobadorService
         foreach ($workflowLicencia as $datos ) {
             if($datos['id_licencia'] == $idLicencia){
                 $idPaso = $datos['paso_actual'];
+            }
                foreach ($workflowPasos as $paso)
                {
-                   if($paso == $idPaso ){
+                   if($paso['id'] == $idPaso ){
                        $idGrupoAprobador = $paso['id_grupo_aprobador'];
                    }
                }
-            }
         }
-
         $stp = new StepLicenseService(new ActionsService());
         $aprobadores = $stp->getDataAprobadores($idGrupoAprobador);
 
@@ -49,10 +48,10 @@ class AprobadorService
 
         if (count($aprobadoresActivos) != 0)
         {
-            return 'tiene aprobadores';
+            return 'tiene aprobadores disponibles';
         }else{
             $this->cerrarPaso($idPaso);
-            return 'no tiene aprobadores';
+            return 'no tiene aprobadores disponibles';
             //Notifica
         }
 

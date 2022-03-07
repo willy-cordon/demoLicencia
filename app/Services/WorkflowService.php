@@ -312,6 +312,7 @@ class WorkflowService
                      */
                     $processCurrent = $this->processWorkflowAccion($arr);
                     $aprueba = $processCurrent['accion'];
+                    $aprueba != 'notifica' ?  dispatch(new PasosJob($id_licencia)) : '';
                     $arrLic=[];
                     if($arr == $processCurrent['id']){
                         if($processCurrent['situacion']){
@@ -341,7 +342,7 @@ class WorkflowService
                                 $notification = $this->actionsService->sendNotification($processCurrentAction);
 //                                $this->processWorkflowLicencia($request);
                             }else{
-                                dispatch(new PasosJob($id_licencia));
+//                                dispatch(new PasosJob($id_licencia));
                             }
 
                         }
