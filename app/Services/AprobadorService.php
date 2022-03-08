@@ -40,7 +40,6 @@ class AprobadorService
         $aprobadoresActivos = [];
         foreach ($aprobadores as $aprobador)
         {
-            Log::debug($aprobador);
             if ($aprobador['activo'] || $aprobador['activo'] == 'true'){
                 $aprobadoresActivos[] = $aprobador;
             }
@@ -48,10 +47,10 @@ class AprobadorService
 
         if (count($aprobadoresActivos) != 0)
         {
-            return 'tiene aprobadores disponibles';
+            return true;
         }else{
             $this->cerrarPaso($idPaso);
-            return 'no tiene aprobadores disponibles';
+            return false;
             //Notifica
         }
 
@@ -121,7 +120,6 @@ class AprobadorService
     }
     public function cerrarPaso($idPaso)
     {
-        Log::debug('cerrando el paso');
         try {
             $workFlowPasos = $this->processJson('workFlowStep');
             $workFlowLic = $this->processJson('workflowLicencia');
@@ -138,7 +136,7 @@ class AprobadorService
                     $arr1['id_grupo_aprobador']= $datos['id_grupo_aprobador'] ;
                     $arr1['paso'] = $datos['paso'];
                     $arr1['situacion'] = true;
-                    $arr1['mensaje'] = 'paso cerrado x motivo';
+                    $arr1['mensaje'] = 'paso cerrado, no se encontraron aprobadores';
                     $arr2[] = $arr1;
                 }else{
                     $arr2[] = $datos;

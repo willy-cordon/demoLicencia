@@ -28,6 +28,12 @@ class PasosJob extends Job
     public function handle()
     {
         $data = $this->aprobadorService->buscarGrupoAprobador($this->idLicencia);
+        /**
+         * ? Si tiene aprobador se registra un nuevo trabajo para verificar sus aprobadores
+         * @return boolean
+         */
+        $data ? dispatch($this->idLicencia):$this->delete();
+
 
     }
 }

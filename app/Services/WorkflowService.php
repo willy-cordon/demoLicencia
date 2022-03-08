@@ -118,7 +118,8 @@ class WorkflowService
             $licenseArray['paso_actual'] = $this->stepLicenseService->processStep($licenseArray,$arr['pasos']);
             $licArr[]=$licenseArray;
             $saveJson = $this->saveFileJson('workflowLicencia',json_encode($licArr));
-            $arr['idLicencia'] = $g;
+//            $arr['idLicencia'] = $g;
+            array_unshift($arr,['idLicencia'=>$g]);
             return  $arr;
 
 
