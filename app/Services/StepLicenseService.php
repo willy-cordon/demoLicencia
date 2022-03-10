@@ -32,10 +32,8 @@ class StepLicenseService
         foreach ($pasos as $key => $paso)
         {
 
-            foreach ($paso as $pas)
-            {
             $accion = 'notifica';
-            if($pas['aprueba']){
+            if($paso['aprueba']){
                 $accion = 'aprueba';
             }
             $arr['id']                 = uniqid();
@@ -51,12 +49,12 @@ class StepLicenseService
 
             $arr['accion']             = $accion;
 
-            $arr['id_grupo_aprobador'] = $pas['grupo_id'];
+            $arr['id_grupo_aprobador'] = $paso['grupo_id'];
 
             $file[]=$arr;
 
             $this->saveFileJson('workFlowStep',json_encode($file));
-            }
+
 
         }
         return $id;

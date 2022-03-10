@@ -48,6 +48,12 @@ class workflowController extends Controller
             }
         }
 
+        /**
+         * aprobarPaso
+         *
+         * @param  mixed $request
+         * @return void
+         */
         public function aprobarPaso(Request $request)
         {
             try {
