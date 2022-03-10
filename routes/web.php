@@ -68,10 +68,10 @@ $router->get('/api/relacionGrupoAprobador','workflowController@relacionGrupoApro
 
 
 $router->get('/api/ffcc','FfccController@formControladoLicencia');
-$router->group(['middleware' => 'cors'], function($app)
-{
-//    $app->get('/api/ffcc','FfccController@formControladoLicencia');
-});
+//$router->group(['middleware' => 'cors'], function($app)
+//{
+////    $app->get('/api/ffcc','FfccController@formControladoLicencia');
+//});
 
 
 // $router->post('/api/aprobadores','EtiquetaController@aprobadores');
