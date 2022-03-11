@@ -22,10 +22,9 @@ class ActionsService
      * !add route Process Notification
      * ?
      */
-    public function sendNotification($data)
+    public function sendEmails($data)
     {
-        Log::alert('notnot');
-        Log::alert($data);
+
         try {
             /**
              * * Notification Email
@@ -58,8 +57,4 @@ class ActionsService
 
     }
 
-    public function updateRHPRO()
-    {
-
-    }
 }
