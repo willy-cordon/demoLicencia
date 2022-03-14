@@ -3,6 +3,7 @@
 namespace App\Services;
 use App\Services\ActionsService;
 use App\Traits\ProcessJsonDbTrait;
+use App\Services\Status\StatusValues;
 use App\Traits\SaveJsonDbTrait;
 use Illuminate\Support\Facades\Log;
 
@@ -15,8 +16,10 @@ class StepLicenseService
     use ProcessJsonDbTrait,SaveJsonDbTrait;
 
     private $actionService;
-    public function __construct(ActionsService $actionService)
+    private $statusValues;
+    public function __construct(ActionsService $actionService, StatusValues $statusValues)
     {
+        $this->statusValues = $statusValues;
         $this->actionService = $actionService;
     }
 
@@ -33,9 +36,10 @@ class StepLicenseService
      * @return void
      * * Aca se identifican cuales seran los pasos que seran necesarios para autorizar la licencia
      */
-    public function createStep($pasos,$grupos){
+    public function createStep($pasos,$grupos,$id_licencia){
         $i = 1;
         $datosPaso = [];
+        $datoTotal = [];
         foreach ($pasos[0] as $paso){
             $etiqueta_licencia = $paso['aprobadores_etiqueta'];
             $convertCollect = collect($grupos);
@@ -51,6 +55,9 @@ class StepLicenseService
                 }
             }
         }
+        $datoTotal['paso'] = $datosPaso;
+        $datoTotal['paso_actual'] = $this->processStep($id_licencia,$datosPaso);
+        return $datoTotal;
     }
 
     /**
@@ -129,6 +136,14 @@ class StepLicenseService
 
     }
 
+    /**
+     * processStep
+     *
+     * @param  mixed $data
+     * @param  mixed $pasos
+     * @return void
+     * genera la informacion que se guarda en la base de datos StepLicenseService
+     */
     public function processStep($data,$pasos)
     {
         $arr = [];
@@ -147,7 +162,7 @@ class StepLicenseService
 
             $arr['paso']               = $key;
 
-            $arr['id_workflow']        = $data['id'];
+            $arr['id_workflow']        = $data;
 
             $arr['estados']            = 'pendiente';
 

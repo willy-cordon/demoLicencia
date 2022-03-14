@@ -58,40 +58,14 @@ class WorkflowService
             $datosSolicitud['Licencia']=$tiposDeLicencia['name'];
             $datosSolicitud['Tipo_licencia']=$tiposDeLicencia['tipo'];
             $datosSolicitud['Certificado']=$tiposDeLicencia['certificado'];
-            foreach ($pasos[0] as $paso){
-                $etiqueta_licencia = $paso['aprobadores_etiqueta'];
-                $convertCollect = collect($grupos);
-                $arrColectGrup = $convertCollect->where('id_etiqueta','=',$etiqueta_licencia)->first();
-                if(!empty($arrColectGrup)){
-                    $datosSolicitud['pasos'][$i] = $this->separarPasos($paso,$arrColectGrup);
-                    $i++;
-                }else{
-                    if($paso['fijo_etiqueta']){
-                        $grupoFijo = $this->relacionGrupoEtiqueta($etiqueta_licencia);
-                        $datosSolicitud['pasos'][$i] = $this->separarPasos($paso,$grupoFijo);
-                        $i++;
-                    }
-                }
-            }
-
-            //return $datosSolicitud;
-            /**
-             * * Save License
-             */
             $g = $this->guardarDatos($datosSolicitud);
-            /**
-             * * Save Steps
-             * ! Append or replace
-             */
             $licenseArray['id'] = uniqid();
             $licenseArray['id_licencia'] = $g;
-            $licenseArray['count'] = count($datosSolicitud['pasos']);
-            //$licenseArray['pasos'] =$datosSolicitud['pasos'];
             $licenseArray['estado']='pendiente';
-
-
-
-            $licenseArray['paso_actual'] = $this->stepLicenseService->processStep($licenseArray,$datosSolicitud['pasos']);
+            $datosPaso = $this->stepLicenseService->createStep($pasos,$grupos,$licenseArray['id_licencia']);
+            $datosSolicitud['pasos'] = $datosPaso['paso'];
+            $licenseArray['count'] = count($datosSolicitud['pasos']);
+            $licenseArray['paso_actual'] = $datosPaso['paso_actual'];
             $licArr[]=$licenseArray;
             $saveJson = $this->saveFileJson('workflowLicencia',json_encode($licArr));
 //            $datosSolicitud['idLicencia'] = $g;
