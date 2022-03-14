@@ -76,11 +76,11 @@ class StepLicenseService
         $arrayGrupo['aprueba'] = $arrayPaso["aprueba"];
         if($arrayPaso["aprueba"]){
             $getStatus = $this->statusValues::Status['pendiente'];
-            $arrayGrupo['estados'] = (new $getStatus)->getState();
+            $arrayGrupo['estados'] = (new $getStatus)->getPossibleState();
             $arrayGrupo['todos'] = $arrayPaso["todos"];
         }else{
             $getStatus = $this->statusValues::Status['notificado'];
-            $arrayGrupo['estados'] = (new $getStatus)->getState();
+            $arrayGrupo['estados'] = (new $getStatus)->getPossibleState();
         }
         return $arrayGrupo;
     }
