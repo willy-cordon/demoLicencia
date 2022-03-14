@@ -6,6 +6,7 @@ use App\Traits\ProcessJsonDbTrait;
 use App\Traits\SaveJsonDbTrait;
 use App\Services\Status\StatusValues;
 use App\Services\StepLicenseService;
+use App\Services\AprobadorService;
 use Illuminate\Http\Client\Request;
 use Illuminate\Support\Facades\Log;
 use App\Jobs\PasosJob;
@@ -16,16 +17,18 @@ use App\Jobs\PasosJob;
  */
 class WorkflowService
 {
-    use ProcessJsonDbTrait,SaveJsonDbTrait;
+    use ProcessJsonDbTrait, SaveJsonDbTrait;
     private $notificacionService;
     private $statusValues;
     private $stepLicenseService;
     private $actionsService;
+    private $aprobadorService;
 
-    public function __construct( StatusValues $statusValues, StepLicenseService $stepLicenseService, ActionsService $actionsService)
+    public function __construct(StatusValues $statusValues, StepLicenseService $stepLicenseService, ActionsService $actionsService, AprobadorService $aprobadorService)
     {
         $this->statusValues = $statusValues;
         $this->stepLicenseService = $stepLicenseService;
+        $this->aprobadorService = $aprobadorService;
         $this->actionsService = $actionsService;
     }
 
@@ -47,49 +50,48 @@ class WorkflowService
             $idLicencia = $request['id_licencia'];
             $datosSolicitud = []; // $datosSolicitud
             $convertCollect = collect($file);
-            $datosSolicitud['usuario'] = $convertCollect->where('nro_legajo','=',$legajo)->first();
-            $grupos= $this->buscargrupoPorLegajo($legajo);
+            $datosSolicitud['usuario'] = $convertCollect->where('nro_legajo', '=', $legajo)->first();
+            $grupos = $this->buscargrupoPorLegajo($legajo);
 
             $tiposDeLicencia = $this->buscarTiposLicencia($idLicencia);
 
             $pasos = $tiposDeLicencia['pasos'];
 
             $i = 1;
-            $datosSolicitud['Licencia']=$tiposDeLicencia['name'];
-            $datosSolicitud['Tipo_licencia']=$tiposDeLicencia['tipo'];
-            $datosSolicitud['Certificado']=$tiposDeLicencia['certificado'];
+            $datosSolicitud['Licencia'] = $tiposDeLicencia['name'];
+            $datosSolicitud['Tipo_licencia'] = $tiposDeLicencia['tipo'];
+            $datosSolicitud['Certificado'] = $tiposDeLicencia['certificado'];
             $g = $this->guardarDatos($datosSolicitud);
             $licenseArray['id'] = uniqid();
             $licenseArray['id_licencia'] = $g;
-            $licenseArray['estado']='pendiente';
-            $datosPaso = $this->stepLicenseService->createStep($pasos,$grupos,$licenseArray['id_licencia']);
+            $licenseArray['estado'] = 'pendiente';
+            $datosPaso = $this->stepLicenseService->createStep($pasos, $grupos, $licenseArray['id_licencia']);
             $datosSolicitud['pasos'] = $datosPaso['paso'];
             $licenseArray['count'] = count($datosSolicitud['pasos']);
             $licenseArray['paso_actual'] = $datosPaso['paso_actual'];
-            $licArr[]=$licenseArray;
-            $saveJson = $this->saveFileJson('workflowLicencia',json_encode($licArr));
-//            $datosSolicitud['idLicencia'] = $g;
-            array_unshift($datosSolicitud,['idLicencia'=>$g]);
+            $licArr[] = $licenseArray;
+            $saveJson = $this->saveFileJson('workflowLicencia', json_encode($licArr));
+            //            $datosSolicitud['idLicencia'] = $g;
+            array_unshift($datosSolicitud, ['idLicencia' => $g]);
             return  $datosSolicitud;
-
-
         } catch (\Throwable $th) {
 
             return $th;
         }
     }
 
-    public function separarPasos($arrayPaso,$arrColectGrup){
+    public function separarPasos($arrayPaso, $arrColectGrup)
+    {
         $arrayGrupo = [];
         $arrayGrupo['grupo'] = $arrColectGrup['name'];
         $arrayGrupo['grupo_id'] = $arrColectGrup['id'];
         $arrayGrupo['aprobadores'] = $this->relacionGrupoAprobador($arrColectGrup['id']);
         $arrayGrupo['aprueba'] = $arrayPaso["aprueba"];
-        if($arrayPaso["aprueba"]){
+        if ($arrayPaso["aprueba"]) {
             $getStatus = $this->statusValues::Status['pendiente'];
             $arrayGrupo['estados'] = (new $getStatus)->getState();
             $arrayGrupo['todos'] = $arrayPaso["todos"];
-        }else{
+        } else {
             $getStatus = $this->statusValues::Status['notificado'];
             $arrayGrupo['estados'] = (new $getStatus)->getState();
         }
@@ -102,7 +104,8 @@ class WorkflowService
      * @param  mixed $array
      * @return void
      */
-    public function guardarDatos($array){
+    public function guardarDatos($array)
+    {
 
         $arr = [];
 
@@ -113,7 +116,7 @@ class WorkflowService
         $arr['user_name']   = $array['usuario']['nombre'];
         $arr['user_legajo'] = $array['usuario']['nro_legajo'];
         $arr['user_email'] = $array['usuario']['email'];
-        $this->saveFileJson('licencia',json_encode($arr));
+        $this->saveFileJson('licencia', json_encode($arr));
         return $arr['id'];
     }
 
@@ -124,18 +127,19 @@ class WorkflowService
      * @param  mixed $idLicencia
      * @return void
      */
-    public function buscarTiposLicencia($idLicencia){
+    public function buscarTiposLicencia($idLicencia)
+    {
 
         $fileSEE = storage_path('json/tipo_licencias.json');
         $arr = [];
-        if($fileSEE){
+        if ($fileSEE) {
 
-            $archivo = json_decode(file_get_contents($fileSEE),true);
+            $archivo = json_decode(file_get_contents($fileSEE), true);
 
 
-            $results = array_filter($archivo, function($licencia) use ($idLicencia,&$arr) {
+            $results = array_filter($archivo, function ($licencia) use ($idLicencia, &$arr) {
 
-                if($licencia['id'] == $idLicencia){
+                if ($licencia['id'] == $idLicencia) {
                     $arr = $licencia;
                     return $arr;
                 }
@@ -143,42 +147,41 @@ class WorkflowService
 
 
             return $arr;
-
         }
-
     }
 
 
-    public function buscargrupoPorLegajo($legajo){
+    public function buscargrupoPorLegajo($legajo)
+    {
         $fileRelacionAprobador = storage_path('json/relacion_aprobador.json');
-        if($fileRelacionAprobador){
-            $infoRelacionAprobador = json_decode(file_get_contents($fileRelacionAprobador),true);
+        if ($fileRelacionAprobador) {
+            $infoRelacionAprobador = json_decode(file_get_contents($fileRelacionAprobador), true);
             $convertCollect = collect($infoRelacionAprobador);
-            $data =  $convertCollect->where('legajo_user',$legajo)->collect();
+            $data =  $convertCollect->where('legajo_user', $legajo)->collect();
             $arrGrp = [];
-            $data->each(function($index,$idGrp) use(&$arrGrp){
+            $data->each(function ($index, $idGrp) use (&$arrGrp) {
                 $arrGrp[] = $this->relacionGrupoAprobadores($index['id_grAp']);
             });
             return $arrGrp;
         }
     }
 
-    public function relacionGrupoAprobadores($id){
+    public function relacionGrupoAprobadores($id)
+    {
         try {
             $arr = [];
             $file = $this->processJson('grupo_aprobadores');
             $convertCollect = collect($file);
-            $arr =  $convertCollect->where('id',$id)->first();
+            $arr =  $convertCollect->where('id', $id)->first();
             return $arr;
-
         } catch (\Throwable $th) {
             //throw $th;
             return $th;
         }
-
     }
 
-    public function relacionGrupoAprobador($id){
+    public function relacionGrupoAprobador($id)
+    {
         try {
             $arrRelGruApro = [];
             $arrGruApro = [];
@@ -186,33 +189,30 @@ class WorkflowService
             $fileApro = $this->processJson('aprobadores');
             $convertRelGruApro = collect($fileRelGruApro);
             $convertApro = collect($fileApro);
-            $arrRelGruApro =  $convertRelGruApro->where('id_grAp',$id)->collect();
-            $arrRelGruApro->each(function($index) use(&$arrGruApro,&$convertApro){
+            $arrRelGruApro =  $convertRelGruApro->where('id_grAp', $id)->collect();
+            $arrRelGruApro->each(function ($index) use (&$arrGruApro, &$convertApro) {
 
-                $arrGruApro[] = $convertApro->where('legajo',$index['legajo_aprobador'])->first();
+                $arrGruApro[] = $convertApro->where('legajo', $index['legajo_aprobador'])->first();
             });
             return $arrGruApro;
-
         } catch (\Throwable $th) {
             //throw $th;
             return $th;
         }
-
     }
 
-    public function relacionGrupoEtiqueta($id_etiqueta){
+    public function relacionGrupoEtiqueta($id_etiqueta)
+    {
         try {
             $arr = [];
             $file = $this->processJson('grupo_aprobadores');
             $convertCollect = collect($file);
-            $arr =  $convertCollect->where('id_etiqueta',$id_etiqueta)->first();
+            $arr =  $convertCollect->where('id_etiqueta', $id_etiqueta)->first();
             return $arr;
-
         } catch (\Throwable $th) {
             //throw $th;
             return $th;
         }
-
     }
     /*
                      ###
@@ -232,7 +232,7 @@ class WorkflowService
      */
     public function processWorkflowLicencia($request)
     {
-        try{
+        try {
             $id_licencia = $request['id_licencia'];
 
             $workFlow = $this->processJson('workflowLicencia');
@@ -250,10 +250,9 @@ class WorkflowService
                     $arr = "";
                     $arrAct = [];
                     $arrPaso = [];
-                    $results = array_filter($workFlow, function($work) use ($id_licencia, &$arr) {
-                        if($work['id_licencia'] == $id_licencia)
-                        {
-                            $arr= $work['paso_actual'] ;
+                    $results = array_filter($workFlow, function ($work) use ($id_licencia, &$arr) {
+                        if ($work['id_licencia'] == $id_licencia) {
+                            $arr = $work['paso_actual'];
                         }
                     });
 
@@ -266,49 +265,45 @@ class WorkflowService
                     Log::debug($processCurrent);
                     $aprueba = $processCurrent['accion'];
                     $aprueba != 'notifica' ?  dispatch(new PasosJob($id_licencia)) : '';
-                    $arrLic=[];
-                    if($arr == $processCurrent['id']){
-                        if($processCurrent['situacion']){
+                    $arrLic = [];
+                    if ($arr == $processCurrent['id']) {
+                        if ($processCurrent['situacion']) {
 
-                            if($aprueba == 'notifica'){
+                            if ($aprueba == 'notifica') {
 
-                                foreach($workFlow as $lic){
+                                foreach ($workFlow as $lic) {
                                     $countUpdate = $lic['count'] - 1;
-                                    if ($countUpdate == 0){
+                                    if ($countUpdate == 0) {
                                         $lic['estado'] = 'aprobado';
                                     }
                                     $lic['count'] = $countUpdate;
                                     $arrLic[] = $lic;
                                 }
-                                $this->saveFileJson('workflowLicencia',json_encode($arrLic));
+                                $this->saveFileJson('workflowLicencia', json_encode($arrLic));
                                 //TODO descontar paso de notificacion
-                                foreach ($workFlowStep as $workflowS){
-                                    if($workflowS['id'] == $processCurrent['id'])
-                                    {
+                                foreach ($workFlowStep as $workflowS) {
+                                    if ($workflowS['id'] == $processCurrent['id']) {
                                         $workflowS['estados'] = 'aprobado';
                                     }
                                     $arrPaso[] = $workflowS;
                                 }
-                                $this->saveFileJson('workFlowStep',json_encode($arrPaso));
+                                $this->saveFileJson('workFlowStep', json_encode($arrPaso));
 
-                                $processCurrentAction = $this->stepLicenseService->getDataAprobadores($processCurrent['id_grupo_aprobador']);
+                                $processCurrentAction = $this->aprobadorService->getDataAprobadores($processCurrent['id_grupo_aprobador']);
                                 $notification = $this->actionsService->sendEmails($processCurrentAction);
-//                                $this->processWorkflowLicencia($request);
-                            }else{
-//                                dispatch(new PasosJob($id_licencia));
+                                //                                $this->processWorkflowLicencia($request);
+                            } else {
+                                //                                dispatch(new PasosJob($id_licencia));
                             }
-
                         }
-
-                    }else{
-                        $results = array_filter($workFlow, function($work) use ($id_licencia, &$arrAct) {
-                            if($work['id_licencia'] == $id_licencia)
-                            {
-                                $arrAct[]= $work ;
+                    } else {
+                        $results = array_filter($workFlow, function ($work) use ($id_licencia, &$arrAct) {
+                            if ($work['id_licencia'] == $id_licencia) {
+                                $arrAct[] = $work;
                             }
                         });
                         $arrAct[0]['paso_actual'] = $processCurrent['id'];
-                        $saveJson = $this->saveFileJson('workflowLicencia',json_encode($arrAct));
+                        $saveJson = $this->saveFileJson('workflowLicencia', json_encode($arrAct));
                         $aprueba = $processCurrent['accion'];
                     }
 
@@ -316,11 +311,11 @@ class WorkflowService
                      * * Si lo que devuelve el paso requiere aprobacion se corta la ejecucion
                      */
 
-                    if ($aprueba!='aprueba'){
+                    if ($aprueba != 'aprueba') {
                         Log::debug('notifica');
                         return $this->processWorkflowLicencia($request);
-                    }else{
-                        $aprobadores = $this->stepLicenseService->getDataAprobadores($processCurrent['id_grupo_aprobador']);
+                    } else {
+                        $aprobadores = $this->aprobadorService->getDataAprobadores($processCurrent['id_grupo_aprobador']);
                         $processCurrent['aprobadores'][] = $aprobadores;
                         return $processCurrent;
                     }
@@ -330,24 +325,24 @@ class WorkflowService
                     return 'No existe el estado ';
                     break;
             }
-        }catch (\Throwable $exception){
+        } catch (\Throwable $exception) {
             return $exception;
         }
     }
     public function processWorkflowAccion($pasoActual)
     {
         Log::debug('process flow accion');
-        try{
+        try {
             $workFlowPasos = $this->processJson('workFlowStep');
             $workFlowLic = $this->processJson('workflowLicencia');
             $paso = (string)$pasoActual;
             $arr2 = [];
-            foreach ($workFlowPasos as $key=>$datos ) {
-                if($datos['id'] == $paso){
-                    $arr2['id']= $datos['id'] ;
-                    $arr2['estados']= $datos['estados'] ;
-                    $arr2['accion']= $datos['accion'] ;
-                    $arr2['id_grupo_aprobador']= $datos['id_grupo_aprobador'] ;
+            foreach ($workFlowPasos as $key => $datos) {
+                if ($datos['id'] == $paso) {
+                    $arr2['id'] = $datos['id'];
+                    $arr2['estados'] = $datos['estados'];
+                    $arr2['accion'] = $datos['accion'];
+                    $arr2['id_grupo_aprobador'] = $datos['id_grupo_aprobador'];
                     $arr2['paso'] = $datos['paso'];
                     $arr2['situacion'] = true;
                 }
@@ -357,14 +352,14 @@ class WorkflowService
             switch ($arr2['estados']) {
                 case 'aprobado':
 
-                    $sigPaso = $arr2['paso']+1;
-                    foreach ($workFlowPasos as $key=>$datos ) {
+                    $sigPaso = $arr2['paso'] + 1;
+                    foreach ($workFlowPasos as $key => $datos) {
 
-                        if($datos['paso'] == $sigPaso){
-                            $arr2['id']= $datos['id'] ;
-                            $arr2['estados']= $datos['estados'] ;
-                            $arr2['accion']= $datos['accion'] ;
-                            $arr2['id_grupo_aprobador']= $datos['id_grupo_aprobador'] ;
+                        if ($datos['paso'] == $sigPaso) {
+                            $arr2['id'] = $datos['id'];
+                            $arr2['estados'] = $datos['estados'];
+                            $arr2['accion'] = $datos['accion'];
+                            $arr2['id_grupo_aprobador'] = $datos['id_grupo_aprobador'];
                             $arr2['paso'] = $datos['paso'];
                             $arr2['situacion'] = true;
                         }
@@ -379,9 +374,7 @@ class WorkflowService
                     return $arr2;
                     break;
             }
-
-
-        }catch (\Throwable $exception){
+        } catch (\Throwable $exception) {
             return $exception;
         }
     }
@@ -390,7 +383,4 @@ class WorkflowService
     {
         return $this->stepLicenseService->aprobarPaso($data);
     }
-
-
-
 }
