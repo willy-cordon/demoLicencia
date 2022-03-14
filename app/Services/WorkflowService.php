@@ -292,7 +292,7 @@ class WorkflowService
                                 $this->saveFileJson('workFlowStep',json_encode($arrPaso));
 
                                 $processCurrentAction = $this->stepLicenseService->getDataAprobadores($processCurrent['id_grupo_aprobador']);
-                                $notification = $this->actionsService->sendNotification($processCurrentAction);
+                                $notification = $this->actionsService->sendEmails($processCurrentAction);
 //                                $this->processWorkflowLicencia($request);
                             }else{
 //                                dispatch(new PasosJob($id_licencia));
