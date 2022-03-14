@@ -34,8 +34,8 @@ class AprobadorService
                    }
                }
         }
-        $stp = new StepLicenseService(new ActionsService());
-        $aprobadores = $stp->getDataAprobadores($idGrupoAprobador);
+
+        $aprobadores = $this->getDataAprobadores($idGrupoAprobador);
 
         $aprobadoresActivos = [];
         foreach ($aprobadores as $aprobador)
@@ -156,5 +156,26 @@ class AprobadorService
         }catch(\Throwable $exception){
             return $exception;
         }
+    }
+
+
+    public function getDataAprobadores($idGrupoAprobador)
+    {
+        $dataRelation = $this->processJson('relacion_grupo_aprobador');
+        $dataAprobadores = $this->processJson('aprobadores');
+        $arr = [];
+        foreach ($dataRelation as $d)
+        {
+            if ($d['id_grAp'] === $idGrupoAprobador)
+            {
+                foreach ($dataAprobadores as $apr)
+                {
+                    if($d['legajo_aprobador'] === $apr['legajo']){
+                        $arr[] = $apr;
+                    }
+                }
+            }
+        }
+        return $arr;
     }
 }
