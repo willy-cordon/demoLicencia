@@ -58,40 +58,14 @@ class WorkflowService
             $datosSolicitud['Licencia']=$tiposDeLicencia['name'];
             $datosSolicitud['Tipo_licencia']=$tiposDeLicencia['tipo'];
             $datosSolicitud['Certificado']=$tiposDeLicencia['certificado'];
-            foreach ($pasos[0] as $paso){
-                $etiqueta_licencia = $paso['aprobadores_etiqueta'];
-                $convertCollect = collect($grupos);
-                $arrColectGrup = $convertCollect->where('id_etiqueta','=',$etiqueta_licencia)->first();
-                if(!empty($arrColectGrup)){
-                    $datosSolicitud['pasos'][$i] = $this->separarPasos($paso,$arrColectGrup);
-                    $i++;
-                }else{
-                    if($paso['fijo_etiqueta']){
-                        $grupoFijo = $this->relacionGrupoEtiqueta($etiqueta_licencia);
-                        $datosSolicitud['pasos'][$i] = $this->separarPasos($paso,$grupoFijo);
-                        $i++;
-                    }
-                }
-            }
-
-            //return $datosSolicitud;
-            /**
-             * * Save License
-             */
             $g = $this->guardarDatos($datosSolicitud);
-            /**
-             * * Save Steps
-             * ! Append or replace
-             */
             $licenseArray['id'] = uniqid();
             $licenseArray['id_licencia'] = $g;
-            $licenseArray['count'] = count($datosSolicitud['pasos']);
-            //$licenseArray['pasos'] =$datosSolicitud['pasos'];
             $licenseArray['estado']='pendiente';
-
-
-
-            $licenseArray['paso_actual'] = $this->stepLicenseService->processStep($licenseArray,$datosSolicitud['pasos']);
+            $datosPaso = $this->stepLicenseService->createStep($pasos,$grupos,$licenseArray['id_licencia']);
+            $datosSolicitud['pasos'] = $datosPaso['paso'];
+            $licenseArray['count'] = count($datosSolicitud['pasos']);
+            $licenseArray['paso_actual'] = $datosPaso['paso_actual'];
             $licArr[]=$licenseArray;
             $saveJson = $this->saveFileJson('workflowLicencia',json_encode($licArr));
 //            $datosSolicitud['idLicencia'] = $g;
@@ -206,29 +180,18 @@ class WorkflowService
 
     public function relacionGrupoAprobador($id){
         try {
-            $arr = [];
-            $arr2 = [];
-            $file = $this->processJson('relacion_grupo_aprobador');
-            $results = array_filter($file, function($gpAprobadores) use ($id,&$arr2) {
-                if($gpAprobadores['id_grAp'] == $id){
-                    return $arr2[] = $gpAprobadores['legajo_aprobador'];
-                }
+            $arrRelGruApro = [];
+            $arrGruApro = [];
+            $fileRelGruApro = $this->processJson('relacion_grupo_aprobador');
+            $fileApro = $this->processJson('aprobadores');
+            $convertRelGruApro = collect($fileRelGruApro);
+            $convertApro = collect($fileApro);
+            $arrRelGruApro =  $convertRelGruApro->where('id_grAp',$id)->collect();
+            $arrRelGruApro->each(function($index) use(&$arrGruApro,&$convertApro){
+
+                $arrGruApro[] = $convertApro->where('legajo',$index['legajo_aprobador'])->first();
             });
-
-
-            foreach($arr2 as $k => $ar)
-            {
-                $file2 = $this->processJson('aprobadores');
-                $results2 = array_filter($file2, function($aprobadores) use (&$arr,$ar,$k) {
-                    if($ar == $aprobadores['legajo']){
-                        $arr[$k]['legajo'] = $ar;
-                        $arr[$k]['email'] = $aprobadores['email'];
-                        $arr[$k]['nombre'] = $aprobadores['nombre'];
-                    }
-                });
-            }
-
-            return $arr;
+            return $arrGruApro;
 
         } catch (\Throwable $th) {
             //throw $th;
