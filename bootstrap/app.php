@@ -102,6 +102,7 @@ $app->middleware([
 // La mayoria de los Comandos Artisan de Laravel
 $app->register(Flipbox\LumenGenerator\LumenGeneratorServiceProvider::class);
 $app->register(Getsolaris\LaravelMakeService\LaravelMakeServiceProvider::class);
+$app->register(\BenSampo\Enum\EnumServiceProvider::class);
 
 /*
 |--------------------------------------------------------------------------

@@ -2,6 +2,7 @@
 
 namespace App\Services\Status;
 
+use App\Enums\Responses;
 use App\Services\ActionsService;
 
 class rechazado implements StatusInterface
@@ -11,8 +12,23 @@ class rechazado implements StatusInterface
         return['finalizado'];
     }
 
+    /**
+     * @param $idLicense
+     * @return bool|string
+     */
     public function licenseStateAction($idLicense)
     {
-        // TODO: Implement stateAction() method.
+        $actionService = new ActionsService();
+
+        $workFlowFile = $this->processJson('workflowLicencia');
+        $licenseFile = $this->processJson('licencia');
+        $collectWorkflowFile = collect($workFlowFile)->first();
+        if($collectWorkflowFile['count'] != 0)
+            return Responses::FailedResponse;
+        $licenseFileCollet = collect($licenseFile);
+
+//        $result = $licenseFileCollet->where('id','=',$collectWorkflowFile['id_licencia'])->collect();
+//        $actionService->sendEmails($licenseFileCollet['user_email']);
+        return true;
     }
 }
