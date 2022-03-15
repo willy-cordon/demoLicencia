@@ -32,8 +32,7 @@ class PasosJob extends Job
          * ? Si tiene aprobador se registra un nuevo trabajo para verificar sus aprobadores
          * @return boolean
          */
-        $data ? dispatch($this->idLicencia):$this->delete();
-
+        $data ? dispatch(new PasosJob($this->idLicencia)) : $this->delete();
 
     }
 }
