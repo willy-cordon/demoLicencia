@@ -14,15 +14,10 @@ class FfccController extends Controller
     public function formControladoLicencia(Request $request){
 
         $idTipoLicencia = (int) $request["idTipoLicencia"];
-        Log::debug(gettype($idTipoLicencia));
-        Log::debug('parametro recibido');
-        Log::debug($idTipoLicencia);
-
         $arr = [];
 
         try {
             $file = $this->processJson('relacionLicenciaFormulario');
-            Log::debug($file);
                 $results = array_filter($file, function($tipoLicencia) use ($idTipoLicencia, &$arr) {
                     if($tipoLicencia['id_tipo_licencia'] == $idTipoLicencia)
                     {
@@ -32,9 +27,9 @@ class FfccController extends Controller
                     }
 
                 });
-            Log::debug($arr);
+
             $formControlado = $this->processJson($arr["nombreArchivo"]);
-            return $formControlado["components"];
+            return $formControlado;
 
 
 
